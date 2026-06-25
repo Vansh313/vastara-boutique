@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vastara Boutique — Book a Home Visit</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cinzel:wght@400;600;700&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --maroon:    #3d0a0a;
+      --maroon-mid:#5c1010;
+      --gold:      #c9a84c;
+      --gold-light:#e8c97a;
+      --gold-dim:  #8a6a28;
+      --cream:     #fdf5e6;
+      --parchment: #f5e6c8;
+      --text-dark: #1a0505;
+      --text-mid:  #4a2020;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--maroon);
+      color: var(--cream);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 17px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── ARCH BORDER SVG MOTIF ── */
+    .arch-top {
+      width: 100%;
+      display: block;
+      line-height: 0;
+    }
+
+    /* ── HEADER ── */
+    header {
+      text-align: center;
+      padding: 56px 24px 40px;
+      position: relative;
+      background: linear-gradient(180deg, #1a0404 0%, var(--maroon) 100%);
+    }
+
+    .header-ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .header-ornament span {
+      color: var(--gold);
+      font-size: 22px;
+      letter-spacing: 6px;
+    }
+
+    .header-ornament hr {
+      flex: 1;
+      max-width: 80px;
+      border: none;
+      border-top: 1px solid var(--gold-dim);
+    }
+
+    .logo-text {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(44px, 10vw, 88px);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      background: linear-gradient(135deg, var(--gold-light) 20%, var(--gold) 50%, var(--gold-dim) 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+
+    .logo-sub {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(13px, 3vw, 18px);
+      letter-spacing: 0.45em;
+      color: var(--gold);
+      margin-top: 6px;
+    }
+
+    .logo-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(14px, 2.5vw, 18px);
+      color: var(--parchment);
+      margin-top: 14px;
+      letter-spacing: 0.06em;
+      opacity: 0.85;
+    }
+
+    /* ── DIVIDER ── */
+    .gold-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin: 32px auto;
+      max-width: 500px;
+      padding: 0 24px;
+    }
+    .gold-divider hr {
+      flex: 1;
+      border: none;
+      border-top: 1px solid var(--gold-dim);
+    }
+    .gold-divider .gem {
+      color: var(--gold);
+      font-size: 16px;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how-section {
+      background: linear-gradient(180deg, var(--maroon) 0%, #2a0707 100%);
+      padding: 60px 24px 56px;
+      text-align: center;
+    }
+
+    .section-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 6vw, 46px);
+      font-weight: 600;
+      color: var(--gold-light);
+      line-height: 1.2;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0;
+      max-width: 900px;
+      margin: 44px auto 0;
+      border: 1px solid var(--gold-dim);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .step {
+      padding: 36px 24px;
+      border-right: 1px solid var(--gold-dim);
+      position: relative;
+      transition: background 0.3s;
+    }
+    .step:last-child { border-right: none; }
+    .step:hover { background: rgba(201,168,76,0.06); }
+
+    .step-num {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--gold-dim);
+      margin-bottom: 14px;
+    }
+
+    .step-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .step h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--gold-light);
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      font-size: 14px;
+      color: var(--parchment);
+      opacity: 0.8;
+      line-height: 1.6;
+    }
+
+    /* ── FORM SECTION ── */
+    .form-section {
+      background: var(--parchment);
+      color: var(--text-dark);
+      padding: 64px 24px 72px;
+    }
+
+    .form-container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .form-section .section-eyebrow { color: var(--gold-dim); }
+    .form-section .section-title { color: var(--maroon); }
+
+    .form-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: var(--text-mid);
+      margin-top: 10px;
+      margin-bottom: 40px;
+    }
+
+    .form-block {
+      margin-bottom: 28px;
+    }
+
+    label {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--maroon-mid);
+      margin-bottom: 8px;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="number"],
+    textarea,
+    select {
+      width: 100%;
+      background: #fff;
+      border: 1px solid #c9a84c66;
+      border-bottom: 2px solid var(--gold);
+      padding: 12px 16px;
+      font-family: 'EB Garamond', serif;
+      font-size: 16px;
+      color: var(--text-dark);
+      outline: none;
+      border-radius: 0;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--gold);
+      box-shadow: 0 2px 0 var(--gold);
+    }
+
+    textarea { resize: vertical; min-height: 100px; }
+
+    .checkbox-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      border: 1px solid #c9a84c55;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .check-item:hover { background: #fdf0d5; border-color: var(--gold); }
+    .check-item input[type="checkbox"] {
+      width: 16px; height: 16px;
+      accent-color: var(--maroon);
+      cursor: pointer;
+      border: none;
+      box-shadow: none;
+      flex-shrink: 0;
+    }
+    .check-item span {
+      font-family: 'EB Garamond', serif;
+      font-size: 15px;
+      color: var(--text-dark);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 520px) { .form-row { grid-template-columns: 1fr; } }
+
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--maroon) 0%, var(--maroon-mid) 100%);
+      color: var(--gold-light);
+      border: 1px solid var(--gold);
+      padding: 18px 32px;
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 16px;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .submit-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--gold-dim) 0%, var(--gold) 100%);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .submit-btn:hover::before { opacity: 1; }
+    .submit-btn:hover { color: var(--maroon); }
+    .submit-btn span { position: relative; z-index: 1; }
+
+    /* ── SUCCESS STATE ── */
+    .success-banner {
+      display: none;
+      background: linear-gradient(135deg, #1a0404, #3d0a0a);
+      border: 1px solid var(--gold);
+      padding: 40px 32px;
+      text-align: center;
+      margin-top: 32px;
+    }
+    .success-banner.visible { display: block; }
+    .success-banner h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--gold-light);
+      margin-bottom: 10px;
+    }
+    .success-banner p {
+      color: var(--parchment);
+      font-style: italic;
+      font-size: 16px;
+    }
+
+    /* ── SERVICES PILLS ── */
+    .services-bar {
+      background: #1a0404;
+      padding: 20px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .pill {
+      border: 1px solid var(--gold-dim);
+      color: var(--gold-light);
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      padding: 7px 18px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0f0202;
+      padding: 40px 24px 32px;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 22px;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .footer-addr {
+      font-size: 14px;
+      color: var(--parchment);
+      opacity: 0.65;
+      margin-bottom: 4px;
+    }
+    .footer-phone {
+      font-family: 'Cinzel', serif;
+      font-size: 16px;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-decoration: none;
+    }
+    .footer-phone:hover { color: var(--gold-light); }
+    .footer-copy {
+      margin-top: 24px;
+      font-size: 12px;
+      color: var(--gold-dim);
+      opacity: 0.7;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── REQUIRED STAR ── */
+    .req { color: var(--gold); }
+
+    /* ── FLOATING ORNAMENT LINES ── */
+    @media (max-width: 600px) {
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .step { border-bottom: 1px solid var(--gold-dim); }
+      .step:nth-child(even) { border-right: none; }
+    }
+    @media (max-width: 380px) {
+      .steps-grid { grid-template-columns: 1fr; }
+      .step { border-right: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-ornament">
+      <hr /><span>✦ ✦ ✦</span><hr />
+    </div>
+    <div class="logo-text">Vastara</div>
+    <div class="logo-sub">Boutique</div>
+    <div class="logo-tagline">Tailored with Tradition. Styled for You.</div>
+    <div class="gold-divider" style="margin-top:28px;">
+      <hr /><span class="gem">❧</span><hr />
+    </div>
+  </header>
+
+  <!-- SERVICES PILLS -->
+  <div class="services-bar">
+    <div class="pill">Complete Suits</div>
+    <div class="pill">Half Lining</div>
+    <div class="pill">Full Lining</div>
+    <div class="pill">Marriage Clothes</div>
+    <div class="pill">Designer Pieces</div>
+    <div class="pill">& More</div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section">
+    <p class="section-eyebrow">Our Process</p>
+    <h2 class="section-title">We Come to You</h2>
+
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">STEP 01</div>
+        <span class="step-icon">📝</span>
+        <h3>Book Online</h3>
+        <p>Fill in your address and what you'd like stitched — takes 2 minutes.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">STEP 02</div>
+        <span class="step-icon">🏠</span>
+        <h3>Home Visit</h3>
+        <p>Our karigar comes to your door, takes precise measurements and collects your cloth.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">STEP 03</div>
+        <span class="step-icon">🪡</span>
+        <h3>Expert Stitching</h3>
+        <p>Your suit is crafted in our boutique with impeccable finish and care.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">STEP 04</div>
+        <span class="step-icon">🎁</span>
+        <h3>Delivered Home</h3>
+        <p>Your finished outfit is delivered right to your door, ready to wear.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING FORM -->
+  <section class="form-section" id="book">
+    <div class="form-container">
+      <p class="section-eyebrow">Book a Home Visit</p>
+      <h2 class="section-title">Tell Us About Your Order</h2>
+      <p class="form-intro">Fill in the details below and we'll call you to confirm a time for our karigar to visit.</p>
+
+      <form id="bookingForm" novalidate>
+
+        <!-- Name -->
+        <div class="form-block">
+          <label for="name">Your Name <span class="req">*</span></label>
+          <input type="text" id="name" name="name" placeholder="e.g. Sunita Sharma" required />
+        </div>
+
+        <!-- Phone -->
+        <div class="form-block">
+          <label for="phone">WhatsApp / Phone Number <span class="req">*</span></label>
+          <input type="tel" id="phone" name="phone" placeholder="e.g. 98132 XXXXX" required />
+        </div>
+
+        <!-- Address -->
+        <div class="form-block">
+          <label for="address">House / Flat Number & Street <span class="req">*</span></label>
+          <input type="text" id="address" name="address" placeholder="e.g. House No. 47, Sector-12, Model Town" required />
+        </div>
+
+        <!-- City / Sector -->
+        <div class="form-row">
+          <div class="form-block">
+            <label for="area">Area / Sector</label>
+            <input type="text" id="area" name="area" placeholder="e.g. Sector-35, Karnal" />
+          </div>
+          <div class="form-block">
+            <label for="landmark">Landmark (optional)</label>
+            <input type="text" id="landmark" name="landmark" placeholder="Near D-Mart, etc." />
+          </div>
+        </div>
+
+        <!-- What to stitch -->
+        <div class="form-block">
+          <label>What would you like stitched? <span class="req">*</span></label>
+          <div class="checkbox-group">
+            <label class="check-item">
+              <input type="checkbox" name="suit_type" value="Complete Suit" />
+              <span>Complete Suit</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" name="suit_type" value="Half Lining" />
+              <span>Half Lining</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" name="suit_type" value="Full Lining" />
+              <span>Full Lining</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" name="suit_type" value="Marriage Outfit" />
+              <span>Marriage Outfit</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" name="suit_type" value="Designer Piece" />
+              <span>Designer Piece</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" name="suit_type" value="Other" />
+              <span>Something Else</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Quantity -->
+        <div class="form-block">
+          <label for="qty">Number of Suits / Pieces <span class="req">*</span></label>
+          <input type="number" id="qty" name="qty" min="1" max="20" placeholder="1" required />
+        </div>
+
+        <!-- Preferred visit time -->
+        <div class="form-block">
+          <label for="timing">Preferred Visit Time</label>
+          <select id="timing" name="timing">
+            <option value="">— No preference —</option>
+            <option>Morning (9 AM – 12 PM)</option>
+            <option>Afternoon (12 PM – 4 PM)</option>
+            <option>Evening (4 PM – 7 PM)</option>
+          </select>
+        </div>
+
+        <!-- Special requests -->
+        <div class="form-block">
+          <label for="notes">Design Preferences or Special Instructions</label>
+          <textarea id="notes" name="notes" placeholder="e.g. Churidar sleeves, V-neck, matching lace work, reference from photo…"></textarea>
+        </div>
+
+        <!-- Cloth -->
+        <div class="form-block">
+          <label>Will you provide your own cloth?</label>
+          <select name="cloth">
+            <option value="yes">Yes, I have my own cloth</option>
+            <option value="no">No, please arrange cloth for me</option>
+            <option value="discuss">I'd like to discuss options</option>
+          </select>
+        </div>
+
+        <button type="submit" class="submit-btn"><span>Book My Home Visit &nbsp;✦</span></button>
+      </form>
+
+      <!-- SUCCESS -->
+      <div class="success-banner" id="successBanner">
+        <h3>✦ &nbsp; Your booking is received!</h3>
+        <p>We'll call you on your WhatsApp number within a few hours to confirm your visit.<br/>Thank you for choosing Vastara Boutique.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Vastara Boutique</div>
+    <p class="footer-addr">Palm Residency Road, Sector-35, Karnal</p>
+    <a class="footer-phone" href="tel:9813290459">98132 90459</a>
+    <p class="footer-copy">© 2026 Vastara Boutique · Expert Karigars · Impeccable Finish</p>
+  </footer>
+
+  <script>
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name  = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const addr  = document.getElementById('address').value.trim();
+      const qty   = document.getElementById('qty').value.trim();
+      const checks = [...document.querySelectorAll('input[name="suit_type"]:checked')];
+
+      if (!name || !phone || !addr || !qty || checks.length === 0) {
+        alert('Please fill in all required fields and select at least one suit type.');
+        return;
+      }
+
+      // Build WhatsApp message
+      const suits = checks.map(c => c.value).join(', ');
+      const timing = document.getElementById('timing').value || 'No preference';
+      const notes  = document.getElementById('notes').value.trim() || 'None';
+      const cloth  = document.querySelector('select[name="cloth"]').value;
+      const area   = document.getElementById('area').value.trim();
+      const landmark = document.getElementById('landmark').value.trim();
+
+      const msg =
+`*New Booking — Vastara Boutique*
+
+👤 Name: ${name}
+📞 Phone: ${phone}
+🏠 Address: ${addr}${area ? ', ' + area : ''}${landmark ? ' (Near ' + landmark + ')' : ''}
+🧵 Suits: ${suits}
+🔢 Quantity: ${qty}
+🕐 Visit Time: ${timing}
+🪡 Cloth: ${cloth}
+📝 Notes: ${notes}`;
+
+      const encoded = encodeURIComponent(msg);
+      const waURL   = `https://wa.me/919813290459?text=${encoded}`;
+
+      // Show success and open WhatsApp
+      document.getElementById('successBanner').classList.add('visible');
+      document.getElementById('bookingForm').style.display = 'none';
+      window.open(waURL, '_blank');
+    });
+  </script>
+</body>
+</html>
